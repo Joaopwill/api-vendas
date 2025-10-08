@@ -11,5 +11,5 @@ import java.math.BigDecimal;
 public class VendedorRelatorio {
     private String nomeVendedor;
     private Long totalVendas;
-    private BigDecimal mediaVendas; //Média de vendas por DIA 
+    private BigDecimal mediaVendas; //Média de vendas por DIA
 }
