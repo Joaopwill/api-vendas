@@ -10,5 +10,5 @@ import java.util.List;
 @Repository //Anotação do Spring para marcar como persistencia
 
 public interface VendasRepository extends JpaRepository<Vendas, Long> {
-    List<Vendas> findbyDataVendaBetween(LocalDate dataInicio, LocalDate dataFim); //Buscar a Entidade Venda pelo filtro dataVenda. O BETWEEN busca entre dois parâmetros (dataInicio e dataFim).
+    List<Vendas> findByDataVendaBetween(LocalDate dataInicio, LocalDate dataFim); //Buscar a Entidade Venda pelo filtro dataVenda. O BETWEEN busca entre dois parâmetros (dataInicio e dataFim).
 }

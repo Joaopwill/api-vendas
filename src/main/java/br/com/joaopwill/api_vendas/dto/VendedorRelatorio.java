@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 @Data //Anotação do Lombok para gerar getters e setters automáticos
 @AllArgsConstructor //Recebe todos os parametros em um unico construtor, evitando escrever codigo repetitivo
-
 public class VendedorRelatorio {
     private String nomeVendedor;
     private Long totalVendas;

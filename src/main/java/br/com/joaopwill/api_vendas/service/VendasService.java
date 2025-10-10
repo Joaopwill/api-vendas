@@ -7,7 +7,6 @@ import br.com.joaopwill.api_vendas.repository.VendasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Service //Spring entende que dece tratar essa classe como componente de serviço
+@Service //Spring entende que deve tratar essa classe como componente de serviço
 public class VendasService {
     @Autowired
     private VendasRepository vendasRepository; //Armazena a instancia do Vendasrepository para realizar as operações do banco de dados
@@ -32,13 +31,13 @@ public class VendasService {
 
     //Retorna o relatorio de vendas do vendedor
     public List<VendedorRelatorio>CalcularRelatorioVendas(LocalDate dataInicio, LocalDate dataFim){
-        if(dataInicio.isBefore(dataFim)){
+        if(dataInicio.isAfter(dataFim)){
             throw new IllegalArgumentException("A data do inicio não pode ser posterior a data do fim");
         }
 
         long qtdDias = ChronoUnit.DAYS.between(dataInicio, dataFim) + 1; //O metodo between retorna a diferença entre os dias
 
-        List <Vendas> qtdVendas = vendasRepository.findbyDataVendaBetween(dataInicio, dataFim); //Chama o metodo do repository para obter todas as vendas realizadas na data informada
+        List <Vendas> qtdVendas = vendasRepository.findByDataVendaBetween(dataInicio, dataFim); //Chama o metodo do repository para obter todas as vendas realizadas na data informada
 
         Map<String, List<Vendas>> vendasPorVendedor = qtdVendas.stream() //Transforma a lista das vendas buscadas em uma stream para mexer com os dados dela sem modificar a lista original
                 .collect(Collectors.groupingBy(Vendas::getVendedorNome)); //Define o criterio de agrupamento pegando o nome do vendedor de cada objeto Vendas
